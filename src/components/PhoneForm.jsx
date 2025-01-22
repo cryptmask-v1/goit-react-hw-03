@@ -94,53 +94,55 @@ const PhoneForm = () => {
           <button type="submit">Add</button>
         </Form>
       </Formik>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Search by name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            margin: "20px 0",
-            padding: "10px",
-            fontSize: "16px",
-            width: "80%",
-          }}
-        />
-
-        <ul
+      {contacts.length > 0 ? (
+        <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
             flexDirection: "column",
-            gap: "10px",
           }}
         >
-          {filteredContacts.map((contact, index) => (
-            <li
-              key={index}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "10px",
-              }}
-            >
-              {contact.name} - {contact.phone}
-              <button onClick={() => deleteContact(contact.name)}>
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+          <input
+            type="text"
+            placeholder="Search by name"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              margin: "20px 0",
+              padding: "10px",
+              fontSize: "16px",
+              width: "80%",
+            }}
+          />
+
+          <ul
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              gap: "10px",
+            }}
+          >
+            {filteredContacts.map((contact, index) => (
+              <li
+                key={index}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                }}
+              >
+                {contact.name} - {contact.phone}
+                <button onClick={() => deleteContact(contact.name)}>
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 };
